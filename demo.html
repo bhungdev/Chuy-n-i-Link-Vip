@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circular Frame</title>
+<style>
+.frame {
+    border-radius: 10px;
+    background: linear-gradient(#abaecb, #abaecb);
+    padding: 20px;
+    width: 300px; /* Sửa đổi kích thước của khung */
+    margin: 50px auto; /* Đặt margin để căn giữa theo chiều ngang */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+    margin-bottom: 5px;
+}
+
+.input-group label {
+    margin-bottom: 10px;
+}
+
+.input-group input[type="text"] {
+    padding: 8px 10px; /* Điều chỉnh kích thước ô văn bản */
+    margin-bottom: 10px;
+}
+
+.input-group button {
+    padding: 5px 10px;
+    margin-top: 5px; /* Điều chỉnh khoảng cách giữa nút và ô văn bản dưới */
+}
+
+</style>
+</head>
+<body>
+<div class="frame">
+    <div class="input-group">
+        <label for="originalLink">Nhập link:</label>
+        <input type="text" id="originalLink" name="originalLink" placeholder="Nhập liên kết web">
+    </div>
+    <button type="button" onclick="clearText()">Xóa</button>
+    <button type="button" onclick="copyText('originalLink')">Sao chép</button> 
+    
+    <div class="input-group">
+    <br>
+	<button type="button" onclick="replaceLink()">Thay thế</button>
+    <br>
+   <label for="replacedLink">Link MegaLink.Pro:</label>
+        <input type="text" id="replacedLink" name="replacedLink" placeholder="Liên kết đã thay thế" readonly>
+    </div>
+    
+    
+    <button type="button" onclick="copyText('replacedLink')">Sao chép</button>
+    <button type="button" onclick="openReplacedLink()">Mở</button> <!-- Di chuyển nút Mở xuống dưới -->
+</div>
+<script>
+function replaceLink() {
+    var originalLink = document.getElementById('originalLink').value;
+    var replacedLink = originalLink.replace('1Api.Vip', 'Megalink.Pro');
+    document.getElementById('replacedLink').value = replacedLink;
+}
+
+function copyText(id) {
+    var text = document.getElementById(id);
+    text.select();
+    document.execCommand('copy');
+    alert("Đã sao chép!");
+}
+
+function clearText() {
+    document.getElementById('originalLink').value = '';
+}
+function openReplacedLink() {
+    var replacedLink = document.getElementById('replacedLink').value;
+    window.open(replacedLink); // Mở link đã thay thế trong một tab mới
+}
+</script>
+</body>
+</html>
